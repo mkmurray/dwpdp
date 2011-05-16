@@ -1,3 +1,3 @@
-%w[lmjerome kskrocki jpacelli zempd romanpy JerryGoodman JohnL4 jdyer100 MrChopstik aashishmodi divihari jdhague stanleygu judyk davidkrauss BruceInnes].each do|name|
-  `git remote add #{name} git://github.com/#{name}/ascriptsp.git`
+%w[bradmead rknapik jimblanchard kylekhunter kkrueger jstout param2000 dayoajayi eMicBra jonathanad wendys cfuess mkmurray bobpace].each do|name|
+  `git remote add #{name} git://github.com/#{name}/dwpdp.git`
 end
