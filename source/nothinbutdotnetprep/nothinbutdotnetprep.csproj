@@ -67,6 +67,7 @@
     <Compile Include="collections\ReadOnlySetOf.cs" />
     <Compile Include="infrastructure\AnonymousCriteria.cs" />
     <Compile Include="infrastructure\CriteriaExtensions.cs" />
+    <Compile Include="infrastructure\InspectProperty.cs" />
     <Compile Include="infrastructure\PropertyAccessor.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
