@@ -30,15 +30,14 @@ namespace nothinbutdotnetprep.collections
       return movies.Contains(movie);
     }
 
+    private IEnumerable<Movie> filterMovies()
+    {
+        return null;
+    }
+
     public IEnumerable<Movie> all_movies_published_by_pixar()
     {
-      foreach (var movie in movies)
-      {
-        if (movie.production_studio == ProductionStudio.Pixar)
-        {
-          yield return movie;
-        }
-      }
+      return movies.filter(movie => movie.production_studio == ProductionStudio.Pixar);
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
