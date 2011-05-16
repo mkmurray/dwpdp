@@ -7,11 +7,5 @@ namespace nothinbutdotnetprep.infrastructure
     {
       return new OrCriteria<ItemToMatch>(left_side, right_side);
     }
-
-    public static IMatchAn<ItemToMatch> equal_to<ItemToMatch, PropertyType>(
-      this PropertyAccessor<ItemToMatch, PropertyType> accessor, PropertyType value)
-    {
-      return new AnonymousCriteria<ItemToMatch>(x => accessor(x).Equals(value));
-    }
   }
 }
