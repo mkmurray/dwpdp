@@ -1,0 +1,18 @@
+<h1>Rules for equality checking in .Net</h1>
+
+<h1>Is it a class?(Reference type)</h1>
+
+<ol>
+<li>Does it implement IEquatable<T> for itself - use it</li>
+<li>Does it override Equals - use it</li>
+<li>Reference equality check</li>
+</ol>
+
+
+<h1>Is it a struct?(Value type)</h1>
+
+<ol>
+<li>Does it override Equals - use it</li>
+<li>Reflective field by field equality check</li>
+</ol>
+
