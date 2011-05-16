@@ -1,4 +1,5 @@
 using System;
+using nothinbutdotnetprep.infrastructure;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -17,7 +18,7 @@ namespace nothinbutdotnetprep.collections
 
     public override string ToString()
     {
-      return string.Format("{0} - {1}", title, nameOfProductionStudio());
+      return String.Format("{0} - {1}", title, nameOfProductionStudio());
     }
 
     string nameOfProductionStudio()
@@ -64,6 +65,22 @@ namespace nothinbutdotnetprep.collections
     bool is_equal_to_non_null_instance_of(Movie other)
     {
       return Equals(other.title, title);
+    }
+
+    public static IMatchAn<Movie> is_published_by(ProductionStudio studio)
+    {
+      return new IsPublishedBy(studio);
+    }
+
+    public static IMatchAn<Movie> is_in_genre(Genre genre)
+    {
+      return new IsInGenre(genre);
+    }
+
+    public static IMatchAn<Movie> is_published_by_pixar_or_disney()
+    {
+      return is_published_by(ProductionStudio.Pixar).or(
+        is_published_by(ProductionStudio.Disney));
     }
   }
 }

@@ -2,8 +2,6 @@ using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.infrastructure
 {
-  public delegate bool Matches<in T>(T item) where T : class;
-
   public static class EnumerableExtensions
   {
     public static IEnumerable<T> one_at_a_time<T>(this IEnumerable<T> items)
@@ -14,15 +12,14 @@ namespace nothinbutdotnetprep.infrastructure
       }
     }
 
-    public static IEnumerable<T> filter<T>(this IEnumerable<T> items, Matches<T> filter) where T : class
+    public static IEnumerable<T> all_matching<T>(this IEnumerable<T> items, IMatchAn<T> condition) 
     {
-      foreach (T item in items)
-      {
-        if (filter(item))
-        {
-          yield return item;
-        }
-      }
+      return all_matching(items, condition.matches);
+    }
+
+    static IEnumerable<T> all_matching<T>(this IEnumerable<T> items, Matches<T> condition) 
+    {
+      foreach (T item in items) if (condition(item)) yield return item;
     }
   }
 }

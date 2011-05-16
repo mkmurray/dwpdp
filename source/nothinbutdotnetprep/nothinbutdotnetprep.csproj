@@ -58,11 +58,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="collections\Genre.cs" />
+    <Compile Include="collections\IsInGenre.cs" />
+    <Compile Include="collections\IsPublishedBy.cs" />
     <Compile Include="collections\Movie.cs" />
+    <Compile Include="collections\MovieCriteria.cs" />
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
+    <Compile Include="infrastructure\AnonymousCriteria.cs" />
+    <Compile Include="infrastructure\CriteriaExtensions.cs" />
+    <Compile Include="infrastructure\OrCriteria.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
+    <Compile Include="infrastructure\IMatchAn.cs" />
+    <Compile Include="infrastructure\Matches.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
