@@ -2,16 +2,9 @@ namespace nothinbutdotnetprep.infrastructure
 {
   public class Where<Item>
   {
-    public HasA<Item> property { get; private set; }
-
-    public Where(HasA<Item> property)
+    public static PropertyAccessor<Item,PropertyType> has_a<PropertyType>(PropertyAccessor<Item,PropertyType> accessor)
     {
-      this.property = property;
-    }
-
-    public static Where<Item> has_a(HasA<Item> property)
-    {
-      return new Where<Item>(property);
+      return accessor;
     }
   }
 }

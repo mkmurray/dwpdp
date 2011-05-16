@@ -67,13 +67,12 @@
     <Compile Include="collections\ReadOnlySetOf.cs" />
     <Compile Include="infrastructure\AnonymousCriteria.cs" />
     <Compile Include="infrastructure\CriteriaExtensions.cs" />
-    <Compile Include="infrastructure\HasA.cs" />
+    <Compile Include="infrastructure\PropertyAccessor.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
     <Compile Include="infrastructure\IMatchAn.cs" />
     <Compile Include="infrastructure\Matches.cs" />
     <Compile Include="infrastructure\Where.cs" />
-    <Compile Include="infrastructure\WhereExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
