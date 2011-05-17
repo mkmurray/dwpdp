@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace nothinbutdotnetprep.infrastructure
+﻿namespace nothinbutdotnetprep.infrastructure.filtering
 {
   public class NegatedCriteriaFactory<ItemToFilter, PropertyType> : ICreateSpecifications<ItemToFilter, PropertyType>
   {
-    private readonly ICreateSpecifications<ItemToFilter, PropertyType> original;
+    ICreateSpecifications<ItemToFilter, PropertyType> original;
 
     public NegatedCriteriaFactory(ICreateSpecifications<ItemToFilter, PropertyType> original)
     {
@@ -13,22 +11,17 @@ namespace nothinbutdotnetprep.infrastructure
 
     public IMatchAn<ItemToFilter> equal_to(PropertyType value)
     {
-      return new NegatingCriteria<ItemToFilter>(original.equal_to(value));
+      return original.equal_to(value).not();
     }
 
     public IMatchAn<ItemToFilter> equal_to_any(params PropertyType[] values)
     {
-      return new NegatingCriteria<ItemToFilter>(original.equal_to_any(values));
+      return original.equal_to_any(values).not();
     }
 
     public IMatchAn<ItemToFilter> create_using(IMatchAn<PropertyType> criteria)
     {
-      return new NegatingCriteria<ItemToFilter>(original.create_using(criteria));
-    }
-
-    public NegatedCriteriaFactory<ItemToFilter, PropertyType> not
-    {
-      get { throw new NotImplementedException(); }
+      return original.create_using(criteria).not();
     }
   }
 }

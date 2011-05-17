@@ -1,6 +1,6 @@
 using System;
 
-namespace nothinbutdotnetprep.infrastructure
+namespace nothinbutdotnetprep.infrastructure.filtering
 {
   public class IsGreaterThan<T> : IMatchAn<T> where T : IComparable<T>
   {

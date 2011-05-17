@@ -5,6 +5,7 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.moq;
 using Machine.Specifications;
 using nothinbutdotnetprep.collections;
+using nothinbutdotnetprep.infrastructure.filtering;
 using nothinbutdotnetprep.tests.utility;
 using nothinbutdotnetprep.infrastructure;
 

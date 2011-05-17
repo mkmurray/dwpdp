@@ -1,4 +1,4 @@
-﻿namespace nothinbutdotnetprep.infrastructure
+﻿namespace nothinbutdotnetprep.infrastructure.filtering
 {
   public class CriteriaFactory<ItemToFilter, PropertyType> : ICreateSpecifications<ItemToFilter, PropertyType>
   {
@@ -24,7 +24,7 @@
       return new PropertyCriteria<ItemToFilter, PropertyType>(accessor, criteria);
     }
 
-    public NegatedCriteriaFactory<ItemToFilter, PropertyType> not
+    public ICreateSpecifications<ItemToFilter, PropertyType> not
     {
       get
       {

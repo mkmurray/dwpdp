@@ -1,4 +1,4 @@
-namespace nothinbutdotnetprep.infrastructure
+namespace nothinbutdotnetprep.infrastructure.filtering
 {
   public class NegatingCriteria<ItemToMatch> : IMatchAn<ItemToMatch>
   {

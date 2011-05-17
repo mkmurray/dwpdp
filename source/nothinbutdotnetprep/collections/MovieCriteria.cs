@@ -1,4 +1,5 @@
 ﻿using nothinbutdotnetprep.infrastructure;
+using nothinbutdotnetprep.infrastructure.filtering;
 
 namespace nothinbutdotnetprep.collections
 {
