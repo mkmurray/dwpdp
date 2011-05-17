@@ -85,6 +85,7 @@
     <Compile Include="infrastructure\filtering\IMatchAn.cs" />
     <Compile Include="infrastructure\filtering\Matches.cs" />
     <Compile Include="infrastructure\filtering\PropertyCriteria.cs" />
+    <Compile Include="infrastructure\filtering\SortCriteria.cs" />
     <Compile Include="infrastructure\filtering\Where.cs" />
     <Compile Include="infrastructure\ranges\InclusiveRange.cs" />
     <Compile Include="infrastructure\ranges\Range.cs" />

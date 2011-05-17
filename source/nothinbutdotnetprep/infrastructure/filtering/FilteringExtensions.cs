@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using nothinbutdotnetprep.infrastructure.ranges;
 
 namespace nothinbutdotnetprep.infrastructure.filtering
@@ -10,6 +11,7 @@ namespace nothinbutdotnetprep.infrastructure.filtering
       return extension_point.create_using(new DateIsGreaterThanYear(year));
     }
   }
+
   public static class FilteringExtensions
   {
     public static IMatchAn<ItemToFilter> equal_to<ItemToFilter, PropertyType>(
@@ -39,5 +41,40 @@ namespace nothinbutdotnetprep.infrastructure.filtering
     {
       return create_using(extension_point,new FallsInRange<PropertyType>(new InclusiveRange<PropertyType>(start, end)));
     }
+  }
+
+  public static class EnumerableFilteringExtensions
+  {
+    public static IEnumerable<ItemToFilter> equal_to<ItemToFilter, PropertyType>(
+      this EnumerableFilteringExtensionPoint<ItemToFilter, PropertyType> extension_point, PropertyType value)
+    {
+      return equal_to_any(extension_point, value);
+    }
+
+    public static IEnumerable<ItemToFilter> equal_to_any<ItemToFilter, PropertyType>(
+      this EnumerableFilteringExtensionPoint<ItemToFilter, PropertyType> extension_point, params PropertyType[] values)
+    {
+      return create_using(extension_point, new EqualToAny<PropertyType>(values));
+    }
+
+    public static IEnumerable<ItemToFilter> create_using<ItemToFilter, PropertyType>(
+      this EnumerableFilteringExtensionPoint<ItemToFilter, PropertyType> extension_point, IMatchAn<PropertyType> criteria)
+    {
+      return extension_point.filter_list_by_criteria(criteria);
+    }
+
+    public static IEnumerable<ItemToFilter> greater_than<ItemToFilter,PropertyType>(
+      this EnumerableFilteringExtensionPoint<ItemToFilter,PropertyType> extension_point,PropertyType value) where PropertyType : IComparable<PropertyType>
+    {
+      return create_using(extension_point,new FallsInRange<PropertyType>(new ExclusiveRangeWithNoUpperBound<PropertyType>(value)));
+    }
+
+    public static IEnumerable<ItemToFilter> between<ItemToFilter,PropertyType>(
+      this EnumerableFilteringExtensionPoint<ItemToFilter,PropertyType> extension_point,PropertyType start, PropertyType end) where PropertyType : IComparable<PropertyType>
+    {
+      return create_using(extension_point,new FallsInRange<PropertyType>(new InclusiveRange<PropertyType>(start, end)));
+    }
+
+    // Not isn't working and this is repetitive and ugly
   }
 }
