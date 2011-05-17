@@ -7,8 +7,8 @@ namespace nothinbutdotnetprep.infrastructure.filtering
     public static EnumerableFilteringExtensionPoint<ItemToMatch, PropertyType> where<ItemToMatch, PropertyType>(this IEnumerable<ItemToMatch> movies,
       PropertyAccessor<ItemToMatch, PropertyType> accessor)
     {
-      var original = new FilteringExtensionPoint<ItemToMatch, PropertyType>(accessor);
-      return new EnumerableFilteringExtensionPoint<ItemToMatch, PropertyType>(movies, original);
+      return new EnumerableFilteringExtensionPoint<ItemToMatch, PropertyType>(movies, 
+        Where<ItemToMatch>.has_a(accessor));
     }
   }
 }
