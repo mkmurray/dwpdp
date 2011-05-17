@@ -26,11 +26,6 @@ namespace nothinbutdotnetprep.infrastructure
     {
       return new NegatingCriteria<Item>(equal_to(value));
     }
-
-    public IMatchAn<Item> greater_than(PropertyType value)
-    {
-      throw new NotImplementedException();
-    }
   }
 
   public class NeverMatches<T> : IMatchAn<T>
