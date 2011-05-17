@@ -38,8 +38,7 @@ namespace nothinbutdotnetprep.infrastructure
 
     public IMatchAn<ItemToFilter> between(PropertyType start, PropertyType end)
     {
-      return
-        new AnonymousCriteria<ItemToFilter>(x => accessor(x).CompareTo(start) >= 0 && accessor(x).CompareTo(end) <= 0);
+      return AnonymousCriteriaFactory<ItemToFilter>.Create(x => accessor(x).CompareTo(start) >= 0 && accessor(x).CompareTo(end) <= 0);
     }
   }
 }
