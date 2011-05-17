@@ -1,14 +1,17 @@
+using System;
+
 namespace nothinbutdotnetprep.infrastructure
 {
-  public class Where<Item>
+  public class Where<ItemToMatch>
   {
-    private Where()
+    public static CriteriaFactory<ItemToMatch, PropertyType> has_a<PropertyType>(PropertyAccessor<ItemToMatch, PropertyType> accessor)
     {
+      return new CriteriaFactory<ItemToMatch, PropertyType>(accessor);
     }
 
-    public static InspectProperty<Item, PropertyType> has_a<PropertyType>(PropertyAccessor<Item,PropertyType> accessor)
+    public static ComparableCriteriaFactory<ItemToMatch, PropertyType> has_an<PropertyType>(PropertyAccessor<ItemToMatch, PropertyType> accessor) where PropertyType : IComparable<PropertyType>
     {
-      return new InspectProperty<Item, PropertyType>(accessor);
+      return new ComparableCriteriaFactory<ItemToMatch, PropertyType>(accessor);
     }
   }
 }

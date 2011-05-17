@@ -30,17 +30,6 @@ namespace nothinbutdotnetprep.collections
       return movies.Contains(movie);
     }
 
-    public IEnumerable<Movie> all_movies_not_published_by_pixar()
-    {
-      foreach (var movie in movies)
-      {
-        if (movie.production_studio != ProductionStudio.Pixar)
-        {
-          yield return movie;
-        }
-      }
-    }
-
     public IEnumerable<Movie> all_movies_published_after(int year)
     {
       foreach (var movie in movies)
@@ -58,28 +47,6 @@ namespace nothinbutdotnetprep.collections
       {
         if (movie.date_published.Year.CompareTo(startingYear) >= 0 &&
           movie.date_published.Year.CompareTo(endingYear) <= 0)
-        {
-          yield return movie;
-        }
-      }
-    }
-
-    public IEnumerable<Movie> all_kid_movies()
-    {
-      foreach (var movie in movies)
-      {
-        if (movie.genre == Genre.kids)
-        {
-          yield return movie;
-        }
-      }
-    }
-
-    public IEnumerable<Movie> all_action_movies()
-    {
-      foreach (var movie in movies)
-      {
-        if (movie.genre == Genre.action)
         {
           yield return movie;
         }

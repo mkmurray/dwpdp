@@ -2,20 +2,19 @@ namespace nothinbutdotnetprep.infrastructure
 {
   public class OrCriteria<ItemToMatch> : IMatchAn<ItemToMatch>
   {
-    private readonly IMatchAn<ItemToMatch>[] _conditions;
+    IMatchAn<ItemToMatch> left;
+    IMatchAn<ItemToMatch> right;
 
-    public OrCriteria(params IMatchAn<ItemToMatch>[] conditions)
+    public OrCriteria(IMatchAn<ItemToMatch> left, IMatchAn<ItemToMatch> right)
     {
-      _conditions = conditions;
+      this.left = left;
+      this.right = right;
     }
+
 
     public bool matches(ItemToMatch item)
     {
-      foreach (IMatchAn<ItemToMatch> condition in _conditions)
-      {
-        if (condition.matches(item)) return true;
-      }
-      return false;
+      return left.matches(item) || right.matches(item);
     }
   }
 }
