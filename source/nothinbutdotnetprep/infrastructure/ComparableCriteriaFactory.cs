@@ -33,14 +33,14 @@ namespace nothinbutdotnetprep.infrastructure
       return original.equal_to_any(values);
     }
 
-    public IMatchAn<ItemToFilter> not_equal_to(PropertyType value)
-    {
-      return original.not_equal_to(value);
-    }
-
     public IMatchAn<ItemToFilter> create_using(IMatchAn<PropertyType> criteria)
     {
       return original.create_using(criteria);
+    }
+
+    public NegatedCriteriaFactory<ItemToFilter, PropertyType> not
+    {
+      get { return original.not; }
     }
   }
 }

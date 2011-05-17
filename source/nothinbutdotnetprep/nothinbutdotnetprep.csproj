@@ -73,6 +73,7 @@
     <Compile Include="infrastructure\ICreateSpecifications.cs" />
     <Compile Include="infrastructure\IsBetween.cs" />
     <Compile Include="infrastructure\IsGreaterThan.cs" />
+    <Compile Include="infrastructure\NegatedCriteriaFactory.cs" />
     <Compile Include="infrastructure\NegatingCriteria.cs" />
     <Compile Include="infrastructure\PropertyAccessor.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />
