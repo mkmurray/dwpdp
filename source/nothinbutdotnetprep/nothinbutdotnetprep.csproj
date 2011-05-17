@@ -69,6 +69,8 @@
     <Compile Include="infrastructure\filtering\AnonymousCriteria.cs" />
     <Compile Include="infrastructure\filtering\CriteriaExtensions.cs" />
     <Compile Include="infrastructure\filtering\DateIsGreaterThanYear.cs" />
+    <Compile Include="infrastructure\filtering\EnumerableExtensions.cs" />
+    <Compile Include="infrastructure\filtering\EnumerableFilteringExtensionPoint.cs" />
     <Compile Include="infrastructure\filtering\EqualToAny.cs" />
     <Compile Include="infrastructure\filtering\FallsInRange.cs" />
     <Compile Include="infrastructure\filtering\FilteringExtensionPoint.cs" />
