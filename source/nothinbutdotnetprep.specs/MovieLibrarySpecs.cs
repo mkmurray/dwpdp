@@ -6,6 +6,7 @@ using developwithpassion.specifications.moq;
 using Machine.Specifications;
 using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.infrastructure.filtering;
+using nothinbutdotnetprep.infrastructure.sorting;
 using nothinbutdotnetprep.tests.utility;
 using nothinbutdotnetprep.infrastructure;
 
@@ -297,7 +298,10 @@ namespace nothinbutdotnetprep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
-        var results = sut.sort_all_movies_by_title_descending;
+
+
+        var results = sut.all_movies().order_by_descending(x => x.title);
+
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
                                          pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
@@ -306,7 +310,10 @@ namespace nothinbutdotnetprep.specs
 
       It should_be_able_to_sort_all_movies_by_title_ascending = () =>
       {
-        var results = sut.sort_all_movies_by_title_ascending;
+        var comparer = Sort<Movie>.by(x => x.title);
+
+
+        var results = sut.all_movies().sort_using(comparer);
 
         results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
                                          pirates_of_the_carribean, shrek, the_ring,
@@ -315,7 +322,10 @@ namespace nothinbutdotnetprep.specs
 
       It should_be_able_to_sort_all_movies_by_date_published_descending = () =>
       {
-        var results = sut.sort_all_movies_by_date_published_descending();
+        var comparer = Sort<Movie>.by_descending(x => x.date_published);
+
+
+        var results = sut.all_movies().sort_using(comparer);
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, the_ring, cars,
                                          pirates_of_the_carribean, a_bugs_life,
@@ -339,7 +349,16 @@ namespace nothinbutdotnetprep.specs
         //Dreamworks
         //Universal
         //Disney
-        var results = sut.sort_all_movies_by_movie_studio_and_year_published();
+        var comparer = Sort<Movie>.by(x => x.production_studio,
+            ProductionStudio.MGM,
+            ProductionStudio.Pixar,
+            ProductionStudio.Dreamworks,
+            ProductionStudio.Universal,
+            ProductionStudio.Disney,
+            ProductionStudio.Paramount)
+          .then_by(x => x.date_published);
+        var results = sut.all_movies().sort_using(comparer);
+
         /* should return a set of results 
                  * in the collection sorted by the rating of the production studio (not the movie rating) and year published. for this exercise you need to take the studio ratings
                  * into effect, which means that you first have to sort by movie studio (taking the ranking into account) and then by the
