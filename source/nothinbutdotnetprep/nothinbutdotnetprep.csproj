@@ -69,6 +69,7 @@
     <Compile Include="infrastructure\ComparableCriteriaFactory.cs" />
     <Compile Include="infrastructure\CriteriaExtensions.cs" />
     <Compile Include="infrastructure\CriteriaFactory.cs" />
+    <Compile Include="infrastructure\ICreateSpecifications.cs" />
     <Compile Include="infrastructure\NegatingCriteria.cs" />
     <Compile Include="infrastructure\PropertyAccessor.cs" />
     <Compile Include="infrastructure\OrCriteria.cs" />

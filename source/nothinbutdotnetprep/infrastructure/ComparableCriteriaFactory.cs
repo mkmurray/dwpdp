@@ -2,16 +2,18 @@ using System;
 
 namespace nothinbutdotnetprep.infrastructure
 {
-  public class ComparableCriteriaFactory<ItemToFilter, PropertyType> where PropertyType : IComparable<PropertyType>
+  public class ComparableCriteriaFactory<ItemToFilter, PropertyType> : ICreateSpecifications<ItemToFilter, PropertyType>
+    where PropertyType : IComparable<PropertyType>
 
   {
     PropertyAccessor<ItemToFilter, PropertyType> accessor;
-    private CriteriaFactory<ItemToFilter, PropertyType> comparable_factory;
+    ICreateSpecifications<ItemToFilter, PropertyType> original;
 
-    public ComparableCriteriaFactory(PropertyAccessor<ItemToFilter, PropertyType> accessor)
+    public ComparableCriteriaFactory(PropertyAccessor<ItemToFilter, PropertyType> accessor,
+                                     ICreateSpecifications<ItemToFilter, PropertyType> original)
     {
       this.accessor = accessor;
-      this.comparable_factory = new CriteriaFactory<ItemToFilter, PropertyType>(accessor);
+      this.original = original;
     }
 
     public IMatchAn<ItemToFilter> greater_than(PropertyType value)
@@ -21,17 +23,23 @@ namespace nothinbutdotnetprep.infrastructure
 
     public IMatchAn<ItemToFilter> equal_to(PropertyType value)
     {
-      return comparable_factory.equal_to_any(value);
+      return original.equal_to(value);
     }
 
     public IMatchAn<ItemToFilter> equal_to_any(params PropertyType[] values)
     {
-      return comparable_factory.equal_to_any(values);
+      return original.equal_to_any(values);
     }
 
     public IMatchAn<ItemToFilter> not_equal_to(PropertyType value)
     {
-      return comparable_factory.not_equal_to(value);
+      return original.not_equal_to(value);
+    }
+
+    public IMatchAn<ItemToFilter> between(PropertyType start, PropertyType end)
+    {
+      return
+        new AnonymousCriteria<ItemToFilter>(x => accessor(x).CompareTo(start) >= 0 && accessor(x).CompareTo(end) <= 0);
     }
   }
 }

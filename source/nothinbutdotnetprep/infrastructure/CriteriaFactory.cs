@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.infrastructure
 {
-  public class CriteriaFactory<Item, PropertyType>
+  public class CriteriaFactory<Item, PropertyType> : ICreateSpecifications<Item, PropertyType>
   {
     PropertyAccessor<Item, PropertyType> accessor;
 
