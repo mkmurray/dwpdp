@@ -31,29 +31,6 @@ namespace nothinbutdotnetprep.collections
       return movies.Contains(movie);
     }
 
-    public IEnumerable<Movie> all_movies_published_after(int year)
-    {
-      foreach (var movie in movies)
-      {
-        if (movie.date_published.Year.CompareTo(year) > 0)
-        {
-          yield return movie;
-        }
-      }
-    }
-
-    public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
-    {
-      foreach (var movie in movies)
-      {
-        if (movie.date_published.Year.CompareTo(startingYear) >= 0 &&
-          movie.date_published.Year.CompareTo(endingYear) <= 0)
-        {
-          yield return movie;
-        }
-      }
-    }
-
     public IEnumerable<Movie> sort_all_movies_by_date_published_descending()
     {
       return sortBy((x, y) => x.date_published.CompareTo(y.date_published)*-1);
