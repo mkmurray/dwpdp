@@ -211,10 +211,8 @@ namespace nothinbutdotnetprep.specs
 
       It should_be_able_to_find_all_movies_published_by_pixar = () =>
       {
-        var criteria = Where<Movie>.has_a(x => x.production_studio)
-                                   .equal_to(ProductionStudio.Pixar);
-
-        var results = sut.all_movies().all_matching(criteria);
+        var results = sut.all_movies().where(x => x.production_studio)
+                                             .equal_to(ProductionStudio.Pixar));
 
         results.ShouldContainOnly(cars, a_bugs_life);
       };
@@ -242,7 +240,7 @@ namespace nothinbutdotnetprep.specs
 
       It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
       {
-        var criteria = Where<Movie>.has_an(x => x.date_published.Year)
+        var criteria = Where<Movie>.has_a(x => x.date_published)
                                    .greater_than(2004);
 
         var results = sut.all_movies().all_matching(criteria);
@@ -253,7 +251,7 @@ namespace nothinbutdotnetprep.specs
 
       It should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
       {
-        var criteria = Where<Movie>.has_an(x => x.date_published.Year)
+        var criteria = Where<Movie>.has_a(x => x.date_published.Year)
                                    .between(1982,2003);
 
         var results = sut.all_movies().all_matching(criteria);
@@ -346,6 +344,8 @@ namespace nothinbutdotnetprep.specs
                  * in the collection sorted by the rating of the production studio (not the movie rating) and year published. for this exercise you need to take the studio ratings
                  * into effect, which means that you first have to sort by movie studio (taking the ranking into account) and then by the
                  * year published. For this test you cannot add any extra properties/fields to either the ProductionStudio or
+         * h
+         * 
                  * Movie classes.*/
 
         results.ShouldContainOnlyInOrder(the_ring, theres_something_about_mary, a_bugs_life, cars, shrek,
