@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.infrastructure
 {
@@ -16,9 +17,14 @@ namespace nothinbutdotnetprep.infrastructure
       return equal_to_any(value);
     }
 
+    public IMatchAn<Item> create_using(Matches<Item> condition)
+    {
+      return new AnonymousCriteria<Item>(condition);
+    }
+
     public IMatchAn<Item> equal_to_any(params PropertyType[] values)
     {
-        return AnonymousCriteriaFactory<Item>.Create(x => new List<PropertyType>(values).Contains(accessor(x)));
+        return create_using(x => new List<PropertyType>(values).Contains(accessor(x)));
     }
 
     public IMatchAn<Item> not_equal_to(PropertyType value)
